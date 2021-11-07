@@ -27,4 +27,21 @@ function pong() {
         height: 20,
         color: "#0095DD"
     };
+
+    // draw everything
+    const render = () => {
+        // draw the canvas
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // draw the ball
+        ctx.fillStyle = ball.color;
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // draw the paddle
+        ctx.fillStyle = paddle.color;
+        ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    };
 }
