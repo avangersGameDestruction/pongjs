@@ -72,4 +72,36 @@ function pong() {
             ball.velocity.y = -ball.velocity.y;
         }
     };
+
+    // update the game 60 times per second
+    const update = () => {
+        moveBall();
+        collision();
+    };
+
+    // listen to keyboard events
+    const keyDownHandler = event => {
+        if (event.key === "Right" || event.key === "ArrowRight") {
+            paddle.velocity.x = 10;
+        } else if (event.key === "Left" || event.key === "ArrowLeft") {
+            paddle.velocity.x = -10;
+        }
+    };
+
+    const keyUpHandler = event => {
+        paddle.velocity.x = 0;
+    };
+
+    // call the functions
+    const gameLoop = () => {
+        update();
+        render();
+        requestAnimationFrame(gameLoop);
+    };
+
+    // start the game
+    gameLoop();
+
+    // listen to keyboard events
+    document.addEventListener("keydown", keyDownHandler, false);
 }
