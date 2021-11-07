@@ -18,4 +18,13 @@ function pong() {
         },
         color: "#0095DD"
     };
+
+    // create a paddle
+    const paddle = {
+        x: canvas.width / 2 - 40,
+        y: canvas.height - 40,
+        width: 80,
+        height: 20,
+        color: "#0095DD"
+    };
 }
