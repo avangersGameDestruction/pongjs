@@ -44,4 +44,32 @@ function pong() {
         ctx.fillStyle = paddle.color;
         ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
     };
+
+    // move the ball
+    const moveBall = () => {
+        ball.x += ball.velocity.x;
+        ball.y += ball.velocity.y;
+    };
+
+    // move the paddle
+    const movePaddle = event => {
+        paddle.x = event.clientX - canvas.offsetLeft - paddle.width / 2;
+    };
+
+    // detect collision
+    const collision = () => {
+        if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+            ball.velocity.x = -ball.velocity.x;
+        }
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+            ball.velocity.y = -ball.velocity.y;
+        }
+        if (
+            ball.y - ball.radius < paddle.y + paddle.height &&
+            ball.x > paddle.x &&
+            ball.x < paddle.x + paddle.width
+        ) {
+            ball.velocity.y = -ball.velocity.y;
+        }
+    };
 }
